@@ -1,0 +1,11 @@
+<odoo>
+    <data>
+        <!-- Define a menu item -->
+        <menuitem id="menu_mobile_app" name="Mobile App" sequence="10"/>
+        <menuitem id="menu_mobile_app_controller" name="API Controller" parent="menu_mobile_app" action="action_mobile_app_controller"/>
+
+        <!-- Define an action for the menu item -->
+        <act_window id="action_mobile_app_controller" name="API Controller" res_model="mobile.app.controller.model" view_mode="tree,form"/>
+    </data>
+</odoo>
+

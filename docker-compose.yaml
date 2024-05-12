@@ -1,0 +1,43 @@
+version: '3'
+services:
+  odoo:
+    image: odoo:16
+    env_file: .env
+    command: odoo -c /etc/odoo/odoo.conf --dev=reload,xml
+    depends_on:
+      - postgres
+    ports:
+      - "8069:8069"
+    volumes:
+      - data:/var/lib/odoo
+      - ./odoo.conf:/etc/odoo/odoo.conf
+      - ./custom_addons:/mnt/extra-addons
+      - ./oca_addons/e-commerce:/mnt/oca-addons/e-commerce
+      - ./oca_addons/brand:/mnt/oca-addons/brand
+
+  postgres:
+    image: postgres:16
+    env_file: .env
+    ports:
+      - "5432:5432"
+    volumes:
+      - db:/var/lib/postgresql/data/pgdata
+
+  pgweb:
+    container_name: pgweb
+    restart: always
+    image: sosedoff/pgweb
+    links:
+      - postgres:postgres
+    ports:
+      - "8081:8081"
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+
+volumes:
+  data:
+  db:
+
+

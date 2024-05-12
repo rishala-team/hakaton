@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <record id="dynamic_snippet_customize_filter_action" model="ir.actions.server">
+      <field name="name">Customize Filter</field>
+      <field name="model_id" ref="product.model_product_product" />
+      <field name="state">code</field>
+      <field name="code">
+DynamicFilter = model.env['website.snippet.filter']
+response = DynamicFilter._get_products('customize_filter', model.env.context)
+      </field>
+    </record>
+    <record id="dynamic_filter_customize_filter" model="website.snippet.filter">
+      <field name="action_server_id" ref="custom_products.dynamic_snippet_customize_filter_action" />
+      <field name="field_names">display_name,description_sale,image_512</field>
+      <field name="limit" eval="16" />
+      <field
+        name="name">Most sold products in week</field>
+    </record>
+  </data>
+</odoo>

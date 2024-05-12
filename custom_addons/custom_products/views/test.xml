@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <template id="website_most_sold_products_template">
+            <t t-call="website.layout">
+                <div class="container">
+                    <h2>Most Sold Products This Week</h2>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Sales Quantity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="most_sold_products" t-as="product">
+                                <tr>
+                                    <td><t t-esc="product.product_id.display_name"/></td>
+                                    <td><t t-esc="product.sales_quantity"/></td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>

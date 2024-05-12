@@ -1,0 +1,15 @@
+<odoo>
+    <record id="view_multi_currency_switcher_settings" model="ir.ui.view">
+        <field name="name">multi.currency.switcher.settings</field>
+        <field name="model">currency_model</field>
+        <field name="arch" type="xml">
+            <form string="Multi Currency Switcher Settings">
+                <group>
+                    <label for="currency_map_ids" string="Currency Mapping"/>
+                    <field name="currency_map_ids" widget="many2many_tags"/>
+                </group>
+            </form>
+        </field>
+    </record>
+</odoo>
+
